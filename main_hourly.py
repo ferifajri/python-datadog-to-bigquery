@@ -79,8 +79,14 @@ if __name__ == '__main__':
       data_list=list_from_json.create_list_from_json(jsonfile,list_column,ln_list_column)
 
       # Create CSV File
-      pathfile="C:\Code\Datadog\\"
-      pathfile_mysql = "C:/Code/Datadog/"
+      #Set Path of your CSV Result File
+      # Use This Format for your Result Path on windows
+      #pathfile="C:\Code\Datadog\\"
+      #pathfile_mysql = "C:/Code/Datadog/"
+      # Use This Format for your Result Path on linux
+      pathfile="/home/work/result/datadog"
+      pathfile_mysql = pathfile
+      
       csv=write_csv.write_csv_hourly(file_date,file_hour,data_list,pathfile,metric,list_column)
       filename = pathfile+metric+'_'+file_date+'_'+file_hour+'.csv'
       filename_mysql = pathfile_mysql + metric + '_' + file_date + '_' + file_hour + '.csv'
