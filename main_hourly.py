@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
       ### Get Datadog KPI you want to extract from Argument, if not given, use default value "Disk_Used" ###
       kpi = argkpi
-      kpi = "Nginx_Request"
+      #kpi = "Nginx_Request"
       # KPI Metric
       metric = DatadogDetail.DDdatabase(kpi)[0]
       # Group by Column
@@ -81,8 +81,8 @@ if __name__ == '__main__':
       # Create CSV File
       #Set Path of your CSV Result File
       # Use This Format for your Result Path on windows
-      #pathfile="C:\Code\Datadog\\"
-      #pathfile_mysql = "C:/Code/Datadog/"
+      #pathfile="C:\result\Datadog\\"
+      #pathfile_mysql = "C:/result/Datadog/"
       # Use This Format for your Result Path on linux
       pathfile="/home/work/result/datadog"
       pathfile_mysql = pathfile
