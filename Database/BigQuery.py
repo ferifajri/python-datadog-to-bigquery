@@ -1,37 +1,28 @@
 from credentials import BigQuery
-BQCredential = BigQuery.BQ_json()
-
-### BQ Credential ###
-import os
-# pip install --upgrade google-cloud-bigquery
-from google.cloud import bigquery
-from google.cloud.bigquery import Client
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = BQCredential
-os.environ['GOOGLE_CLOUD_DISABLE_GRPC'] = 'True'
-client = bigquery.Client()
-###
-
-
-
+BQ_Credential = BigQuery.BQ_json()[0]
+BQ_ServiceAccount = BigQuery.BQ_json()[1]
+BQ_ProjectID = BigQuery.BQ_json()[2]
 
 # ### BQ Credential ###
-# from google.cloud import bigquery
-# from google.cloud.bigquery import Client
-# from google.oauth2 import service_account
-#
-# key_path= '/home/work/GCP/billing-production-infra-29ba-02abdd9608dc.json'
-#
-# SCOPES = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/bigquery']
-# SERVICE_ACCOUNT_FILE = '/home/work/GCP/billing-production-infra-29ba-02abdd9608dc.json'
-#
-# credentials = service_account.Credentials.from_service_account_file(
-#         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-#
-# delegated_credentials = credentials.with_subject('csv-import@billing-production-infra-29ba.iam.gserviceaccount.com')
-# project = "billing-production-infra-29ba"
-# client = bigquery.Client(credentials=delegated_credentials, project=project)
-#
-# ###
+import os
+from google.cloud import bigquery
+from google.cloud.bigquery import Client
+from google.oauth2 import service_account
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = BQ_Credential
+os.environ['GOOGLE_CLOUD_DISABLE_GRPC'] = 'True'
+
+SCOPES = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/bigquery']
+SERVICE_ACCOUNT_FILE = BQ_Credential
+
+credentials = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+
+delegated_credentials = credentials.with_subject(BQ_ServiceAccount)
+project_id = BQ_ProjectID
+client = bigquery.Client(credentials=delegated_credentials, project=project_id)
+
+###
 
 from Database import DatabaseDetail
 
@@ -71,4 +62,3 @@ def insertBQ(filename,project_id,dataset_id,table,ystarttime, yendtime):
    job.result()  # Waits for table load to complete.
 
    print("Loaded {} rows into {}:{}.".format(job.output_rows, dataset_id, table))
-
