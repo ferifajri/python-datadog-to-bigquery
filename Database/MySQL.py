@@ -3,7 +3,7 @@
 # import MySQLdb   # pip install mysqlclient
 # from MySQLdb import connection
 
-import mysql.connector
+import mysql.connector  ## pip install mysql-connector-python
 
 def insertdbmysql (filename,host,username,pwd,dbname,table, ystarttime, yendtime):
    db = MySQLdb.connect(host=host, # The Host
