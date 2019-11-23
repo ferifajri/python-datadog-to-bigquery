@@ -10,10 +10,10 @@ from Database import DatabaseDetail, MySQL, BigQuery
 
 from json2csv import list_from_json,write_csv
 
-yesterday = datetime.now() - timedelta(hours=17)
+yesterday = datetime.now() - timedelta(hours=2)
 # yesterday = yesterday.strftime('%Y-%m-%d')
 yesterday = yesterday.strftime('%Y-%m-%d %H:00:00')
-today = datetime.now() - timedelta(hours=15)
+today = datetime.now() - timedelta(hours=0)
 # today = datetime.now() - timedelta(hours=1)
 today = today.strftime('%Y-%m-%d %H:00:00')
 # today = today.strftime('%Y-%m-%d')
