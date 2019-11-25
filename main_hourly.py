@@ -90,6 +90,9 @@ if __name__ == '__main__':
       csv=write_csv.write_csv_hourly(file_date,file_hour,data_list,pathfile,metric,list_column)
       filename = pathfile+metric+'_'+file_date+'_'+file_hour+'.csv'
       filename_mysql = pathfile_mysql + metric + '_' + file_date + '_' + file_hour + '.csv'
+      
+      #Silent remove json file
+      get_metric.silentremove(jsonfile)
 
       # ETL to Database
       table = "dd_" + metric.replace('.', '_') + "_" + interval
