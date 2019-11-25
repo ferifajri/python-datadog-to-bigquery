@@ -85,9 +85,11 @@ if __name__ == '__main__':
       csv=write_csv.write_csv(file_date,data_list,pathfile,metric,list_column)
       filename = pathfile+metric+'_'+file_date+'.csv'
       filename_mysql = pathfile_mysql + metric + '_' + file_date + '.csv'
+      get_metric.silentremove(jsonfile)
+      
       # ETL to Database
       table = "dd_" + metric.replace('.', '_') + "_hourly"
-      get_metric.silentremove(jsonfile)
+      
 
       # MySQL Database
       host = DatabaseDetail.Database_Connection['MySQL']['host']
