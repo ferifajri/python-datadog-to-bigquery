@@ -1,6 +1,7 @@
 from credentials import datadog
 from datadog import initialize, api
 from json import dump
+import os
 
 api_key = datadog.datadog_api()[0]
 app_key = datadog.datadog_api()[1]
@@ -33,3 +34,10 @@ def get_metric_hourly(ystart,yend,file_date,file_hour,column,metric,interval):
    with open(metric+"_"+interval+"_"+file_date+"_"+file_hour+".json", "w") as f:
    #with open("test.json", "w") as f:
      dump(results, f)
+      
+def silentremove(filename):
+    try:
+        os.remove(filename)
+    except OSError as e: # this would be "except OSError, e:" before Python 2.6
+        if e.errno != errno.ENOENT: # errno.ENOENT = no such file or directory
+            raise # re-raise exception if a different error occurred
