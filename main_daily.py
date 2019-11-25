@@ -87,6 +87,7 @@ if __name__ == '__main__':
       filename_mysql = pathfile_mysql + metric + '_' + file_date + '.csv'
       # ETL to Database
       table = "dd_" + metric.replace('.', '_') + "_hourly"
+      get_metric.silentremove(jsonfile)
 
       # MySQL Database
       host = DatabaseDetail.Database_Connection['MySQL']['host']
